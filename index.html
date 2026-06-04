@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; script-src 'none';" />
+<title>Goli — Parashiko. Luaj. Fito.</title>
+<meta name="description" content="Aplikacioni i parashikimeve për Superligën e Kosovës. Krijo grupe me shoqninë, parashiko rezultatet dhe shih kush e njeh më mirë futbollin." />
+<meta property="og:title" content="Goli — Parashiko. Luaj. Fito." />
+<meta property="og:description" content="Aplikacioni i parashikimeve për Superligën e Kosovës. Falas për të filluar." />
+<meta property="og:image" content="https://goli-app.com/assets/icon.png" />
+<meta property="og:url" content="https://goli-app.com" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+
+<style>
+/* ============================================================
+   GOLI — elevated. Black · white · emerald. Apple-grade calm.
+   ============================================================ */
+:root{
+  --bg:#000000;
+  --bg-2:#070807;
+  --surface:#0e100f;
+  --surface-2:#15171680;
+  --line:rgba(255,255,255,.08);
+  --line-2:rgba(255,255,255,.14);
+
+  --text:#f4f6f5;
+  --text-2:#9aa39f;
+  --text-3:#616865;
+
+  --accent:#10b981;
+  --accent-2:#34d399;
+  --accent-dim:rgba(16,185,129,.14);
+  --ember:#ff7a2e;
+
+  --font:'Hanken Grotesk', -apple-system, system-ui, sans-serif;
+  --mono:'JetBrains Mono', ui-monospace, monospace;
+
+  --maxw:1140px;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+
+*{ box-sizing:border-box; margin:0; padding:0; }
+html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--font);
+  line-height:1.55;
+  font-weight:400;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+  letter-spacing:-.005em;
+}
+a{ color:inherit; text-decoration:none; }
+img{ display:block; max-width:100%; }
+.wrap{ width:100%; max-width:var(--maxw); margin:0 auto; padding:0 28px; }
+
+::selection{ background:var(--accent); color:#04140d; }
+
+/* ---------- type ---------- */
+h1,h2,h3,h4{ font-weight:700; line-height:1.04; letter-spacing:-.035em; }
+.eyebrow{
+  font-family:var(--mono); font-weight:500; font-size:.72rem;
+  letter-spacing:.26em; text-transform:uppercase; color:var(--accent);
+}
+.lead{ color:var(--text-2); font-weight:400; }
+.em{ color:var(--accent); }
+
+/* ============================================================
+   NAV
+   ============================================================ */
+header.nav{
+  position:fixed; inset:0 0 auto 0; z-index:80;
+  transition:background .4s var(--ease), border-color .4s, backdrop-filter .4s;
+  border-bottom:1px solid transparent;
+}
+header.nav.scrolled{
+  background:rgba(5,6,5,.66); backdrop-filter:blur(18px) saturate(1.2);
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{ display:flex; align-items:center; justify-content:space-between; height:70px; }
+.brand{ display:flex; align-items:center; gap:11px; font-weight:700; font-size:1.18rem; letter-spacing:-.04em; }
+.brand img{ width:34px; height:34px; border-radius:9px; box-shadow:0 0 0 1px var(--line-2), 0 6px 18px -8px rgba(0,0,0,.8); }
+.nav-links{ display:flex; align-items:center; gap:30px; }
+.nav-links a{ color:var(--text-2); font-weight:500; font-size:.92rem; transition:color .2s; white-space:nowrap; }
+.nav-links a:hover{ color:var(--text); }
+.nav-right{ display:flex; align-items:center; gap:18px; }
+
+.btn{
+  display:inline-flex; align-items:center; gap:9px; justify-content:center;
+  font-family:var(--font); font-weight:600; font-size:.92rem;
+  border-radius:11px; padding:11px 20px; cursor:pointer; border:1px solid transparent;
+  transition:transform .2s var(--ease), background .2s, border-color .2s, color .2s;
+  white-space:nowrap;
+}
+.btn-primary{ background:var(--accent); color:#04140d; }
+.btn-primary:hover{ background:var(--accent-2); transform:translateY(-1px); }
+.btn-ghost{ background:transparent; color:var(--text); border-color:var(--line-2); }
+.btn-ghost:hover{ border-color:var(--text-2); transform:translateY(-1px); }
+.menu-toggle{ display:none; background:none; border:none; color:var(--text); cursor:pointer; }
+
+/* ============================================================
+   STORE BADGES — refined, official-feel, dark mode
+   ============================================================ */
+.store-row{ display:flex; gap:13px; flex-wrap:wrap; }
+.badge{
+  display:inline-flex; align-items:center; gap:13px;
+  padding:12px 20px 12px 18px; border-radius:14px;
+  background:#0c0e0d; border:1px solid var(--line-2);
+  transition:transform .22s var(--ease), border-color .22s, background .22s;
+}
+.badge:hover{ transform:translateY(-2px); border-color:var(--text-2); background:#121413; }
+.badge svg{ width:26px; height:26px; flex-shrink:0; }
+.badge .b-text{ text-align:left; line-height:1.12; }
+.badge .b-small{ display:block; font-size:.64rem; letter-spacing:.08em; color:var(--text-2); text-transform:uppercase; font-weight:500; white-space:nowrap; }
+.badge .b-big{ display:block; font-size:1.06rem; font-weight:700; letter-spacing:-.02em; margin-top:1px; white-space:nowrap; }
+.badge.soon{ opacity:.62; }
+.badge.soon:hover{ transform:none; border-color:var(--line-2); background:#0c0e0d; }
+.badge.soon .b-small{ color:var(--accent-2); }
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{ position:relative; min-height:100svh; display:flex; flex-direction:column; justify-content:flex-start; padding-top:128px; overflow:hidden; }
+.hero-bg{ position:absolute; inset:0; z-index:0; pointer-events:none; }
+.hero-bg .glow{
+  position:absolute; left:50%; top:36%; width:1100px; height:1100px; transform:translate(-50%,-50%);
+  background:radial-gradient(circle, rgba(16,185,129,.11), rgba(16,185,129,.03) 40%, transparent 64%);
+  filter:blur(8px);
+}
+.hero-bg .glow-ember{
+  position:absolute; right:-6%; top:-4%; width:680px; height:680px;
+  background:radial-gradient(circle, rgba(255,122,46,.10), transparent 62%);
+}
+.hero-inner{ position:relative; z-index:3; text-align:center; display:flex; flex-direction:column; align-items:center; }
+.hero .eyebrow{ opacity:0; transform:translateY(12px); white-space:nowrap; }
+.hero h1{
+  font-size:clamp(2.6rem,6.6vw,5.3rem); margin-top:20px; max-width:15ch; line-height:1.07;
+  opacity:0; transform:translateY(20px);
+}
+.hero-sub{ margin-top:30px; max-width:50ch; font-size:clamp(1.05rem,1.7vw,1.25rem); color:var(--text-2); opacity:0; transform:translateY(20px); }
+.hero .store-row{ margin-top:34px; justify-content:center; opacity:0; transform:translateY(20px); }
+.hero-meta{ margin-top:18px; font-size:.82rem; color:var(--text-3); font-family:var(--mono); letter-spacing:.04em; opacity:0; transform:translateY(20px); }
+
+.hero.go .eyebrow,.hero.go h1,.hero.go .hero-sub,.hero.go .store-row,.hero.go .hero-meta{
+  opacity:1; transform:translateY(0); transition:opacity .8s var(--ease), transform .8s var(--ease);
+}
+.hero.go h1{ transition-delay:.08s; }
+.hero.go .hero-sub{ transition-delay:.18s; }
+.hero.go .store-row{ transition-delay:.28s; }
+.hero.go .hero-meta{ transition-delay:.36s; }
+
+.hero-device{
+  position:relative; z-index:2; margin:34px auto 30px; width:min(300px,66vw);
+  opacity:0; transform:translateY(40px) scale(.98);
+  -webkit-mask-image:linear-gradient(to bottom,#000 66%,transparent 100%);
+  mask-image:linear-gradient(to bottom,#000 66%,transparent 100%);
+}
+.hero.go .hero-device{ opacity:1; transform:translateY(0) scale(1); transition:opacity .9s var(--ease) .12s, transform 1s var(--ease) .12s; }
+.hero-device img{ width:100%; filter:drop-shadow(0 40px 80px rgba(0,0,0,.7)); }
+
+.scroll-hint{
+  position:absolute; left:50%; bottom:24px; transform:translateX(-50%); z-index:4;
+  display:flex; flex-direction:column; align-items:center; gap:7px;
+  font-family:var(--mono); font-size:.66rem; letter-spacing:.26em; text-transform:uppercase; color:var(--text-3);
+  opacity:0; transition:opacity .6s ease 1.4s;
+}
+.hero.go .scroll-hint{ opacity:1; }
+.scroll-hint svg{ width:15px; height:15px; animation:bob 2s ease-in-out infinite; }
+@keyframes bob{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(5px);} }
+
+/* ============================================================
+   SECTION SCAFFOLD
+   ============================================================ */
+section{ position:relative; padding:128px 0; }
+.shead{ max-width:680px; }
+.shead.center{ margin:0 auto; text-align:center; }
+.shead h2{ font-size:clamp(2rem,4.6vw,3.4rem); margin-top:18px; }
+.shead p{ margin-top:20px; font-size:1.12rem; color:var(--text-2); }
+
+.reveal{ opacity:0; transform:translateY(34px); transition:opacity .8s var(--ease), transform .8s var(--ease); }
+.reveal.in{ opacity:1; transform:translateY(0); }
+
+/* ============================================================
+   TRUST STRIP
+   ============================================================ */
+.strip{ border-block:1px solid var(--line); padding:24px 0; background:var(--bg-2); }
+.strip .wrap{ display:flex; flex-wrap:wrap; gap:16px 52px; justify-content:center; }
+.strip-item{ display:flex; align-items:center; gap:11px; color:var(--text-2); font-weight:500; font-size:.94rem; }
+.strip-item .dot{ width:6px; height:6px; border-radius:50%; background:var(--accent); box-shadow:0 0 10px var(--accent); }
+
+/* ============================================================
+   HOW IT WORKS — elegant numbered rows
+   ============================================================ */
+.steps{ display:grid; grid-template-columns:repeat(4,1fr); gap:30px; }
+.step{ position:relative; padding-top:30px; border-top:1px solid var(--line-2); }
+.step .num{ width:46px; height:46px; border-radius:50%; border:1px solid var(--line-2); display:flex; align-items:center; justify-content:center; font-family:var(--mono); font-weight:500; font-size:.95rem; color:var(--accent); }
+.step h3{ font-size:1.28rem; letter-spacing:-.03em; margin-top:26px; min-height:2.6em; }
+.step p{ margin-top:6px; color:var(--text-2); font-size:.98rem; }
+
+/* ============================================================
+   SHOWCASE — full device + floating detail cards
+   ============================================================ */
+.showcase{ background:var(--bg-2); border-block:1px solid var(--line); overflow:hidden; }
+.show-grid{ display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center; }
+.show-stage{ position:relative; display:flex; justify-content:center; }
+.show-stage .glow{ position:absolute; inset:0; background:radial-gradient(circle at 50% 45%, rgba(16,185,129,.18), transparent 60%); filter:blur(10px); }
+.device{ position:relative; width:min(330px,80%); border-radius:42px; overflow:hidden; box-shadow:0 50px 100px -40px rgba(0,0,0,.9), 0 0 0 1px var(--line-2); }
+.device img{ width:100%; }
+.float{
+  position:absolute; background:rgba(14,16,15,.86); backdrop-filter:blur(14px);
+  border:1px solid var(--line-2); border-radius:16px; padding:8px; overflow:hidden;
+  box-shadow:0 24px 50px -20px rgba(0,0,0,.85);
+}
+.float img{ border-radius:9px; }
+.float.f-rank{ width:230px; left:-44px; top:18%; }
+.float.f-match{ width:250px; right:-50px; bottom:14%; }
+.float .cap{ font-family:var(--mono); font-size:.6rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); padding:7px 6px 4px; }
+
+.show-copy .feat-line{ display:flex; gap:16px; padding:22px 0; border-bottom:1px solid var(--line); }
+.show-copy .feat-line:last-child{ border-bottom:none; }
+.show-copy .feat-line .fi{ width:22px; height:22px; color:var(--accent); flex-shrink:0; margin-top:3px; stroke-width:1.7; }
+.show-copy .feat-line h4{ font-size:1.1rem; letter-spacing:-.02em; }
+.show-copy .feat-line p{ color:var(--text-2); font-size:.96rem; margin-top:4px; }
+
+/* ============================================================
+   FEATURES — bento
+   ============================================================ */
+.bento{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+.card{
+  background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:30px;
+  transition:transform .28s var(--ease), border-color .28s, background .28s;
+}
+.card:hover{ transform:translateY(-4px); border-color:var(--line-2); background:#101312; }
+.card .ico{ width:34px; height:34px; color:var(--accent); stroke-width:1.6; margin-bottom:20px; }
+.card h3{ font-size:1.24rem; letter-spacing:-.03em; }
+.card p{ color:var(--text-2); margin-top:10px; font-size:.97rem; }
+.card.wide{ grid-column:span 2; }
+
+/* ============================================================
+   SCORING
+   ============================================================ */
+.score-grid{ display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+.score{ background:var(--surface); border:1px solid var(--line); border-radius:24px; padding:38px; }
+.score.goli{ border-color:rgba(16,185,129,.4); background:linear-gradient(180deg, rgba(16,185,129,.06), transparent 40%); box-shadow:0 0 60px -30px rgba(16,185,129,.5); }
+.score .pill{ display:inline-block; font-family:var(--mono); font-size:.68rem; font-weight:500; letter-spacing:.14em; text-transform:uppercase; padding:6px 13px; border-radius:50px; margin-bottom:20px; }
+.pill.std{ background:rgba(255,255,255,.05); color:var(--text-2); border:1px solid var(--line-2); }
+.pill.gp{ background:var(--accent-dim); color:var(--accent-2); border:1px solid rgba(16,185,129,.35); }
+.score h3{ font-size:1.7rem; }
+.score .desc{ color:var(--text-2); font-size:.98rem; margin:8px 0 26px; }
+table.st{ width:100%; border-collapse:collapse; }
+table.st th,table.st td{ text-align:left; padding:14px 4px; border-bottom:1px solid var(--line); }
+table.st th{ font-size:.68rem; text-transform:uppercase; letter-spacing:.12em; color:var(--text-3); font-weight:600; }
+table.st td{ font-size:1rem; }
+table.st td.p{ text-align:right; font-family:var(--mono); font-weight:700; color:var(--accent); }
+table.st td.na{ text-align:right; font-family:var(--mono); color:var(--text-3); }
+table.st th.r{ text-align:right; }
+table.st tr:last-child td{ border-bottom:none; }
+
+/* ============================================================
+   CTA
+   ============================================================ */
+.cta{ text-align:center; }
+.cta-box{ position:relative; border:1px solid var(--line-2); border-radius:32px; padding:84px 32px; overflow:hidden; background:var(--surface); }
+.cta-box .glow{ position:absolute; left:50%; bottom:-40%; width:760px; height:560px; transform:translateX(-50%); background:radial-gradient(ellipse at center, rgba(16,185,129,.22), transparent 64%); pointer-events:none; }
+.cta-box img.ic{ width:74px; height:74px; border-radius:18px; margin:0 auto 26px; position:relative; box-shadow:0 0 0 1px var(--line-2), 0 20px 50px -20px rgba(0,0,0,.9); }
+.cta-box h2{ font-size:clamp(2.1rem,5vw,3.6rem); position:relative; }
+.cta-box p{ color:var(--text-2); max-width:44ch; margin:18px auto 36px; position:relative; font-size:1.1rem; }
+.cta-box .store-row{ position:relative; justify-content:center; }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer{ border-top:1px solid var(--line); padding:42px 0 30px; background:var(--bg-2); }
+.foot-top{ display:flex; flex-wrap:wrap; gap:36px; justify-content:space-between; }
+.foot-brand{ display:flex; align-items:center; gap:12px; font-weight:700; font-size:1.2rem; letter-spacing:-.04em; }
+.foot-brand img{ width:38px; height:38px; border-radius:10px; box-shadow:0 0 0 1px var(--line-2); }
+.tagline{ font-family:var(--mono); font-size:.66rem; letter-spacing:.2em; color:var(--text-3); margin-top:12px; }
+.foot-links{ display:flex; gap:60px; flex-wrap:wrap; }
+.foot-col h4{ font-size:.72rem; text-transform:uppercase; letter-spacing:.14em; color:var(--text-3); margin-bottom:16px; font-weight:600; }
+.foot-col a{ display:block; color:var(--text-2); padding:6px 0; font-size:.94rem; transition:color .2s; }
+.foot-col a:hover{ color:var(--accent); }
+.foot-bottom{ margin-top:32px; padding-top:20px; border-top:1px solid var(--line); display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; color:var(--text-3); font-size:.84rem; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width:920px){
+  .steps{ grid-template-columns:repeat(2,1fr); gap:30px 26px; }
+  .step h3{ min-height:0; }
+  .bento{ grid-template-columns:repeat(2,1fr); }
+  .card.wide{ grid-column:span 2; }
+  .show-grid{ grid-template-columns:1fr; gap:64px; }
+  .show-stage{ order:-1; }
+  .float.f-rank{ left:-12px; } .float.f-match{ right:-12px; }
+}
+@media (max-width:680px){
+  .nav-links,.nav-right .btn-ghost{ display:none; }
+  .menu-toggle{ display:block; }
+  section{ padding:88px 0; }
+  .score-grid{ grid-template-columns:1fr; }
+  .bento{ grid-template-columns:1fr; }
+  .card.wide{ grid-column:span 1; }
+  .float{ display:none; }
+  .foot-bottom{ flex-direction:column; }
+}
+@media (prefers-reduced-motion:reduce){
+  html{ scroll-behavior:auto; }
+  .reveal{ transition:none; opacity:1; transform:none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================ NAV ============================ -->
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a href="#top" class="brand"><img src="assets/icon.png" alt="Goli" /> Goli</a>
+    <nav class="nav-links">
+      <a href="#how">Si funksionon</a>
+      <a href="#brenda">Brenda aplikacionit</a>
+      <a href="#features">Veçoritë</a>
+      <a href="#scoring">Pikët</a>
+    </nav>
+    <div class="nav-right">
+      <a href="#download" class="btn btn-primary">Shkarko</a>
+    </div>
+    <button class="menu-toggle" aria-label="Menu" onclick="document.getElementById('how').scrollIntoView()">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- ============================ HERO ============================ -->
+<section class="hero" id="top">
+  <div class="hero-bg">
+    <div class="glow"></div>
+    <div class="glow-ember"></div>
+  </div>
+
+  <div class="hero-inner wrap">
+    <span class="eyebrow">Parashiko · Luaj · Fito</span>
+    <div class="hero-device">
+      <img src="assets/device-ndeshjet.png" alt="Goli — ndeshjet me parashikimet" />
+    </div>
+    <p class="hero-sub">Aplikacioni i parashikimeve për <strong style="color:var(--text);font-weight:600">Superligën e Kosovës</strong>. Krijo grupe, parashiko rezultatet dhe shih kush e njeh më mirë futbollin.</p>
+    <div class="store-row">
+      <span class="badge soon" title="Së shpejti">
+        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M16.36 12.6c-.03-2.6 2.12-3.85 2.22-3.91-1.21-1.77-3.1-2.02-3.77-2.05-1.6-.16-3.13.94-3.94.94-.82 0-2.07-.92-3.41-.9-1.75.03-3.37 1.02-4.27 2.59-1.83 3.17-.47 7.86 1.31 10.43.87 1.26 1.9 2.67 3.26 2.62 1.31-.05 1.8-.85 3.39-.85 1.58 0 2.03.85 3.41.82 1.41-.02 2.3-1.28 3.16-2.55.99-1.46 1.4-2.87 1.42-2.95-.03-.01-2.72-1.05-2.75-4.16zM13.9 4.85c.72-.88 1.21-2.1 1.08-3.32-1.04.04-2.31.7-3.06 1.57-.67.77-1.26 2.01-1.1 3.2 1.16.09 2.35-.59 3.08-1.45z"/></svg>
+        <span class="b-text"><span class="b-small">Së shpejti në</span><span class="b-big">App Store</span></span>
+      </span>
+      <span class="badge soon" title="Së shpejti për Android">
+        <svg viewBox="0 0 24 24"><path fill="#34d399" d="M3.6 2.3c-.2.2-.3.5-.3.9v17.6c0 .4.1.7.3.9l9.4-9.7L3.6 2.3z"/><path fill="#f5b400" d="m16.3 8.4-3.3 3.6 3.3 3.6 3.9-2.2c.9-.5.9-1.8 0-2.3l-3.9-2.7z"/><path fill="#34d399" d="M3.6 2.3 13 11.7 16.3 8.1 5.1 1.7c-.6-.4-1.2-.2-1.5.6z" opacity=".85"/><path fill="#10b981" d="m3.6 21.7 12.7-7.3-3.3-3.6-9.4 10.9z"/></svg>
+        <span class="b-text"><span class="b-small">Së shpejti në</span><span class="b-big">Google Play</span></span>
+      </span>
+    </div>
+    <div class="hero-meta">Falas për të filluar · Pa para reale · Pa bast</div>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Lëviz poshtë</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+</section>
+
+<!-- ============================ TRUST STRIP ============================ -->
+<div class="strip">
+  <div class="wrap">
+    <div class="strip-item"><span class="dot"></span> Superliga e Kosovës</div>
+    <div class="strip-item"><span class="dot"></span> Shqip &amp; Deutsch</div>
+    <div class="strip-item"><span class="dot"></span> Grupe private me kod</div>
+    <div class="strip-item"><span class="dot"></span> Renditje live</div>
+  </div>
+</div>
+
+<!-- ============================ HOW IT WORKS ============================ -->
+<section id="how">
+  <div class="wrap">
+    <div class="shead reveal">
+      <span class="eyebrow">Si funksionon</span>
+      <h2>Katër hapa deri te renditja</h2>
+      <p class="lead">Pa komplikime. Krijo grupin, parashiko, mblidh pikë dhe ngjitu lart.</p>
+    </div>
+    <div class="steps" style="margin-top:64px">
+      <div class="step reveal">
+        <span class="num">01</span>
+        <h3>Krijo ose bashkohu</h3>
+        <p>Hap një grup dhe fto shoqninë me një kod 6-shifror — ose bashkohu te grupi i tyre.</p>
+      </div>
+      <div class="step reveal">
+        <span class="num">02</span>
+        <h3>Parashiko rezultatin</h3>
+        <p>Para çdo ndeshjeje vendos golat për vendasin dhe mysafirët. Parashikimet mbyllen me nisjen e lojes.</p>
+      </div>
+      <div class="step reveal">
+        <span class="num">03</span>
+        <h3>Mblidh pikë</h3>
+        <p>Sa më i saktë tipi, aq më shumë pikë: ekzakt 4, diferencë 3, fitues 2.</p>
+      </div>
+      <div class="step reveal">
+        <span class="num">04</span>
+        <h3>Ngjitu në renditje</h3>
+        <p>Krahasohu me grupin, me qytetin dhe me gjithë Kosovën — renditje live për të gjithë.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ SHOWCASE ============================ -->
+<section class="showcase" id="brenda">
+  <div class="wrap">
+    <div class="show-grid">
+      <div class="show-copy reveal">
+        <span class="eyebrow">Brenda aplikacionit</span>
+        <h2 style="font-size:clamp(2rem,4.4vw,3.2rem);margin-top:18px">Gjithçka në një pamje</h2>
+        <p class="lead" style="margin:18px 0 30px;font-size:1.08rem">Të errët, të pastër, kart-bazuar. I ndërtuar për tifozët e Superligës — pa zhurmë, pa reklama.</p>
+        <div class="feat-line">
+          <svg class="fi" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="8" r="6"/><path d="M15.5 13.5 17 22l-5-3-5 3 1.5-8.5"/></svg>
+          <div><h4>Renditja gjithmonë e dukshme</h4><p>Kryesoje grupin tënd dhe shih medaljet ar, argjend dhe bronz në kohë reale.</p></div>
+        </div>
+        <div class="feat-line">
+          <svg class="fi" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M8 4v16"/></svg>
+          <div><h4>Parashikim me një prekje</h4><p>Karta e pastër për çdo ndeshje të xhiros — vendos golat shpejt, para fillimit të ndeshjes.</p></div>
+        </div>
+        <div class="feat-line">
+          <svg class="fi" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 20V10M18 20V4M6 20v-4"/></svg>
+          <div><h4>Statistika që tregojnë formën</h4><p>Saktësia, seritë dhe mesatarja e pikëve — renditje në grup dhe renditje qyteti/shteti.</p></div>
+        </div>
+      </div>
+
+      <div class="show-stage reveal">
+        <div class="glow"></div>
+        <div class="device"><img src="assets/phone.png" alt="Goli — kryefaqja" /></div>
+        <div class="float f-rank"><div class="cap">Renditja</div><img src="assets/crop-rank.png" alt="Renditja e grupit" /></div>
+        <div class="float f-match"><div class="cap">Parashikim</div><img src="assets/crop-match.png" alt="Parashikim ndeshjeje" /></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ FEATURES ============================ -->
+<section id="features">
+  <div class="wrap">
+    <div class="shead reveal">
+      <span class="eyebrow">Veçoritë</span>
+      <h2>Gjithçka për garën me shoqni</h2>
+      <p class="lead">Nga grupet private te parashikimet sezonale — Goli e mban të gjithë tabelën në një vend.</p>
+    </div>
+    <div class="bento" style="margin-top:56px">
+      <div class="card reveal">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        <h3>Grupe private</h3>
+        <p>Kod ftese, vetëm për shoqninë tënde. Asnjë i panjohur s'hyn pa ftesë.</p>
+      </div>
+      <div class="card reveal">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="8" r="6"/><path d="M15.5 13.5 17 22l-5-3-5 3 1.5-8.5"/></svg>
+        <h3>Renditje shumëfishe</h3>
+        <p>Renditje për grup, qytet dhe shtet. Shih ku qëndron mes të gjithëve.</p>
+      </div>
+      <div class="card reveal">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round">
+          <line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/>
+          <circle cx="9" cy="6" r="2.5" fill="#0e100f"/><circle cx="15" cy="12" r="2.5" fill="#0e100f"/><circle cx="8" cy="18" r="2.5" fill="#0e100f"/>
+        </svg>
+        <h3>Dy mënyra pikësh</h3>
+        <p>Standard ose Goli — ku barazimet dhe fitoret e jashtme japin më shumë pikë.</p>
+      </div>
+      <div class="card reveal">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9zM13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        <h3>Njoftime</h3>
+        <p>Kujtesë 2 orë para ndeshjes dhe njoftim sapo vjen rezultati.</p>
+      </div>
+      <div class="card reveal">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-linecap="round"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+        <h3>Parashikime sezonale</h3>
+        <p>Tipo kampionin dhe golashënuesin e sezonit për pikë bonus.</p>
+      </div>
+      <div class="card reveal">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <h3>Privatësi &amp; siguri</h3>
+        <p>Face ID si bllokim, plus moderim i emrave të grupeve dhe përdoruesve.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ SCORING ============================ -->
+<section id="scoring">
+  <div class="wrap">
+    <div class="shead center reveal">
+      <span class="eyebrow">Pikët</span>
+      <h2>Si numërohen pikët</h2>
+      <p class="lead">Çdo grup zgjedh vetë mënyrën. Sa më i vështirë parashikimi, aq më i madh shpërblimi.</p>
+    </div>
+    <div class="score-grid" style="margin-top:56px">
+      <div class="score reveal">
+        <span class="pill std">Standard</span>
+        <h3>Klasik</h3>
+        <p class="desc">I drejtpërdrejtë — shpërblen saktësinë.</p>
+        <table class="st">
+          <thead><tr><th>Rezultati</th><th class="r">Pikë</th></tr></thead>
+          <tbody>
+            <tr><td>Rezultat ekzakt</td><td class="p">4</td></tr>
+            <tr><td>Diferencë e saktë e golave</td><td class="p">3</td></tr>
+            <tr><td>Fitues i saktë (1 · X · 2)</td><td class="p">2</td></tr>
+            <tr><td>Gabim</td><td class="na">0</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="score goli reveal">
+        <span class="pill gp">Mënyra Goli</span>
+        <h3>Modified 9</h3>
+        <p class="desc">Barazimet dhe fitoret e jashtme — më të vështira, më shumë pikë.</p>
+        <table class="st">
+          <thead><tr><th>Tipi</th><th class="r">Ekzakt</th><th class="r">Dif.</th><th class="r">Fitues</th></tr></thead>
+          <tbody>
+            <tr><td>Fitore vendase</td><td class="p">4</td><td class="p">3</td><td class="p">2</td></tr>
+            <tr><td>Barazim</td><td class="p">6</td><td class="na">—</td><td class="p">4</td></tr>
+            <tr><td>Fitore e jashtme</td><td class="p">6</td><td class="p">5</td><td class="p">4</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ CTA ============================ -->
+<section id="download" class="cta">
+  <div class="wrap">
+    <div class="cta-box reveal">
+      <div class="glow"></div>
+      <img class="ic" src="assets/icon.png" alt="Goli" />
+      <h2>Gati për të parashikuar?</h2>
+      <p>Fto shoqninë, zgjidh ndeshjet dhe trego se kush e njeh më mirë futbollin e Kosovës.</p>
+      <div class="store-row">
+        <span class="badge soon" title="Së shpejti">
+          <svg viewBox="0 0 24 24"><path fill="currentColor" d="M16.36 12.6c-.03-2.6 2.12-3.85 2.22-3.91-1.21-1.77-3.1-2.02-3.77-2.05-1.6-.16-3.13.94-3.94.94-.82 0-2.07-.92-3.41-.9-1.75.03-3.37 1.02-4.27 2.59-1.83 3.17-.47 7.86 1.31 10.43.87 1.26 1.9 2.67 3.26 2.62 1.31-.05 1.8-.85 3.39-.85 1.58 0 2.03.85 3.41.82 1.41-.02 2.3-1.28 3.16-2.55.99-1.46 1.4-2.87 1.42-2.95-.03-.01-2.72-1.05-2.75-4.16zM13.9 4.85c.72-.88 1.21-2.1 1.08-3.32-1.04.04-2.31.7-3.06 1.57-.67.77-1.26 2.01-1.1 3.2 1.16.09 2.35-.59 3.08-1.45z"/></svg>
+          <span class="b-text"><span class="b-small">Së shpejti në</span><span class="b-big">App Store</span></span>
+        </span>
+        <span class="badge soon" title="Së shpejti për Android">
+          <svg viewBox="0 0 24 24"><path fill="#34d399" d="M3.6 2.3c-.2.2-.3.5-.3.9v17.6c0 .4.1.7.3.9l9.4-9.7L3.6 2.3z"/><path fill="#f5b400" d="m16.3 8.4-3.3 3.6 3.3 3.6 3.9-2.2c.9-.5.9-1.8 0-2.3l-3.9-2.7z"/><path fill="#34d399" d="M3.6 2.3 13 11.7 16.3 8.1 5.1 1.7c-.6-.4-1.2-.2-1.5.6z" opacity=".85"/><path fill="#10b981" d="m3.6 21.7 12.7-7.3-3.3-3.6-9.4 10.9z"/></svg>
+          <span class="b-text"><span class="b-small">Së shpejti në</span><span class="b-big">Google Play</span></span>
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ FOOTER ============================ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <div class="foot-brand"><img src="assets/icon.png" alt="Goli" /> Goli</div>
+        <div class="tagline">PARASHIKO · LUAJ · FITO</div>
+      </div>
+      <div class="foot-links">
+        <div class="foot-col">
+          <h4>Aplikacioni</h4>
+          <a href="#how">Si funksionon</a>
+          <a href="#brenda">Brenda aplikacionit</a>
+          <a href="#features">Veçoritë</a>
+          <a href="#scoring">Pikët</a>
+          <a href="#download">Shkarko</a>
+        </div>
+        <div class="foot-col">
+          <h4>Kompania</h4>
+          <a href="#top">Rreth nesh</a>
+          <a href="mailto:info@goli-app.com">Kontakt</a>
+          <a href="privacy.html">Privatësia</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Goli · Të gjitha të drejtat e rezervuara</span>
+      <span>Bërë për tifozët e Superligës së Kosovës</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ---------- hero reveal ---------- */
+(function(){
+  const hero = document.getElementById('top');
+  requestAnimationFrame(()=>requestAnimationFrame(()=>hero.classList.add('go')));
+})();
+
+/* ---------- nav state + scroll reveals ---------- */
+(function(){
+  const nav=document.getElementById('nav');
+  const onScroll=()=>nav.classList.toggle('scrolled', window.scrollY>30);
+  window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
+
+  const io=new IntersectionObserver((es)=>{
+    es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:.12, rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.reveal').forEach((el,i)=>{
+    el.style.transitionDelay=(i%4*0.06)+'s';
+    io.observe(el);
+  });
+})();
+</script>
+
+</body>
+</html>
