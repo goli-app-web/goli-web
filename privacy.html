@@ -1,257 +1,241 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Privacy Policy — Goli</title>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; script-src 'none';" />
+<title>Privacy Policy — Goli</title>
+<meta name="description" content="How Goli collects, uses, and protects your personal data." />
 
-    body {
-      background-color: #000;
-      color: #a1a1aa;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      font-size: 15px;
-      line-height: 1.7;
-      padding: 40px 20px 80px;
-    }
+<link rel="icon" type="image/png" href="assets/icon.png" />
+<link rel="apple-touch-icon" href="assets/icon.png" />
 
-    .container {
-      max-width: 680px;
-      margin: 0 auto;
-    }
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
 
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 40px;
-    }
+<style>
+:root{
+  --bg:#000000;
+  --bg-2:#070807;
+  --surface:#0e100f;
+  --line:rgba(255,255,255,.08);
+  --line-2:rgba(255,255,255,.14);
+  --text:#f4f6f5;
+  --text-2:#9aa39f;
+  --text-3:#616865;
+  --accent:#10b981;
+  --accent-2:#34d399;
+  --accent-dim:rgba(16,185,129,.14);
+  --font:'Hanken Grotesk', -apple-system, system-ui, sans-serif;
+  --mono:'JetBrains Mono', ui-monospace, monospace;
+  --maxw:760px;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
 
-    .logo-icon {
-      width: 36px;
-      height: 36px;
-      background: #10b981;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-    }
+*{ box-sizing:border-box; margin:0; padding:0; }
+html{ -webkit-text-size-adjust:100%; }
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--font);
+  line-height:1.65;
+  font-weight:400;
+  -webkit-font-smoothing:antialiased;
+  letter-spacing:-.005em;
+}
+a{ color:var(--accent); text-decoration:none; transition:color .2s; }
+a:hover{ color:var(--accent-2); }
+::selection{ background:var(--accent); color:#04140d; }
+.wrap{ width:100%; max-width:var(--maxw); margin:0 auto; padding:0 28px; }
 
-    .logo-text {
-      color: #fff;
-      font-size: 22px;
-      font-weight: 700;
-      letter-spacing: -0.5px;
-    }
+/* ---------- nav ---------- */
+header.nav{
+  position:sticky; top:0; z-index:80;
+  background:rgba(5,6,5,.72); backdrop-filter:blur(18px) saturate(1.2);
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{ display:flex; align-items:center; justify-content:space-between; height:70px; max-width:var(--maxw); margin:0 auto; padding:0 28px; }
+.brand{ display:flex; align-items:center; gap:11px; font-weight:700; font-size:1.18rem; letter-spacing:-.04em; color:var(--text); }
+.brand img{ width:34px; height:34px; border-radius:9px; box-shadow:0 0 0 1px var(--line-2), 0 6px 18px -8px rgba(0,0,0,.8); }
+.back{
+  display:inline-flex; align-items:center; gap:8px;
+  color:var(--text-2); font-weight:500; font-size:.92rem;
+  border:1px solid var(--line-2); border-radius:11px; padding:9px 16px;
+  transition:border-color .2s, color .2s, transform .2s var(--ease);
+}
+.back:hover{ color:var(--text); border-color:var(--text-2); transform:translateY(-1px); }
+.back svg{ width:15px; height:15px; }
 
-    .meta {
-      color: #52525b;
-      font-size: 12px;
-      margin-bottom: 8px;
-    }
+/* ---------- header block ---------- */
+.doc-head{ padding:72px 0 40px; border-bottom:1px solid var(--line); }
+.eyebrow{
+  font-family:var(--mono); font-weight:500; font-size:.72rem;
+  letter-spacing:.26em; text-transform:uppercase; color:var(--accent);
+}
+.doc-head h1{ font-size:clamp(2.2rem,5vw,3.2rem); font-weight:700; line-height:1.05; letter-spacing:-.035em; margin-top:18px; }
+.doc-head .meta{ font-family:var(--mono); font-size:.78rem; letter-spacing:.04em; color:var(--text-3); margin-top:20px; }
 
-    h1 {
-      color: #fff;
-      font-size: 28px;
-      font-weight: 700;
-      margin-bottom: 24px;
-      letter-spacing: -0.5px;
-    }
+/* ---------- body content ---------- */
+.doc{ padding:8px 0 96px; }
+.doc h2{
+  font-size:1.32rem; font-weight:700; letter-spacing:-.03em; color:var(--text);
+  margin-top:56px; padding-top:28px; border-top:1px solid var(--line);
+  display:flex; align-items:baseline; gap:14px;
+}
+.doc h2 .n{ font-family:var(--mono); font-size:.86rem; font-weight:500; color:var(--accent); letter-spacing:.04em; }
+.doc p{ color:var(--text-2); margin-top:14px; font-size:1.02rem; }
+.doc ul{ list-style:none; margin-top:16px; display:flex; flex-direction:column; gap:11px; }
+.doc ul li{ position:relative; padding-left:24px; color:var(--text-2); font-size:1.02rem; }
+.doc ul li::before{ content:""; position:absolute; left:2px; top:.62em; width:6px; height:6px; border-radius:50%; background:var(--accent); box-shadow:0 0 8px var(--accent-dim); }
+.doc strong{ color:var(--text); font-weight:600; }
 
-    .intro {
-      margin-bottom: 40px;
-    }
+.legal-note{
+  margin-top:18px; padding:16px 20px; border-radius:14px;
+  background:var(--accent-dim); border:1px solid rgba(16,185,129,.28);
+  font-size:.96rem; color:var(--text-2);
+}
+.legal-note strong{ color:var(--accent-2); }
 
-    section {
-      margin-bottom: 32px;
-    }
+/* ---------- provider cards ---------- */
+.providers{ display:flex; flex-direction:column; gap:14px; margin-top:20px; }
+.provider{
+  background:var(--surface); border:1px solid var(--line); border-radius:18px;
+  padding:22px 24px; transition:border-color .25s, transform .25s var(--ease), background .25s;
+}
+.provider:hover{ border-color:var(--line-2); background:#101312; transform:translateY(-2px); }
+.provider .pname{ display:flex; align-items:center; gap:10px; font-weight:700; font-size:1.06rem; letter-spacing:-.02em; color:var(--text); }
+.provider .pname .dot{ width:7px; height:7px; border-radius:50%; background:var(--accent); box-shadow:0 0 10px var(--accent); flex-shrink:0; }
+.provider p{ margin-top:8px; font-size:.97rem; }
+.provider a{ font-family:var(--mono); font-size:.82rem; letter-spacing:.02em; }
 
-    h2 {
-      color: #fff;
-      font-size: 16px;
-      font-weight: 600;
-      margin-bottom: 10px;
-    }
+/* ---------- footer ---------- */
+footer{ border-top:1px solid var(--line); padding:40px 0; background:var(--bg-2); }
+.foot-inner{ max-width:var(--maxw); margin:0 auto; padding:0 28px; }
+.foot-brand{ display:flex; align-items:center; gap:11px; font-weight:700; font-size:1.1rem; letter-spacing:-.04em; }
+.foot-brand img{ width:32px; height:32px; border-radius:9px; box-shadow:0 0 0 1px var(--line-2); }
+.foot-note{ margin-top:16px; color:var(--text-3); font-size:.86rem; }
+.foot-note .tag{ font-family:var(--mono); font-size:.68rem; letter-spacing:.16em; text-transform:uppercase; color:var(--text-3); display:block; margin-top:8px; }
 
-    p {
-      margin-bottom: 10px;
-    }
-
-    ul {
-      list-style: none;
-      margin-top: 8px;
-    }
-
-    ul li {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 6px;
-    }
-
-    ul li::before {
-      content: '•';
-      color: #52525b;
-      flex-shrink: 0;
-    }
-
-    .third-party {
-      margin-top: 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .third-party-item strong {
-      display: block;
-      color: #fff;
-      font-size: 14px;
-      margin-bottom: 4px;
-    }
-
-    .footer {
-      margin-top: 40px;
-      padding-top: 24px;
-      border-top: 1px solid #18181b;
-      text-align: center;
-      color: #52525b;
-      font-size: 12px;
-      line-height: 1.8;
-    }
-
-    a {
-      color: #10b981;
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    @media (max-width: 480px) {
-      body { padding: 24px 16px 60px; }
-      h1 { font-size: 22px; }
-    }
-  </style>
+@media (max-width:560px){
+  .doc-head{ padding:52px 0 32px; }
+  .doc h2{ margin-top:44px; }
+}
+@media (prefers-reduced-motion:reduce){
+  .back{ transition:none; }
+  .provider{ transition:none; }
+}
+</style>
 </head>
 <body>
-  <div class="container">
 
-    <div class="logo">
-      <div class="logo-icon">⚽</div>
-      <span class="logo-text">Goli</span>
-    </div>
-
-    <p class="meta">Last updated: January 2025</p>
-    <h1>Privacy Policy</h1>
-
-    <div class="intro">
-      <p>Goli ("we", "our", or "us") is committed to protecting your personal data. This Privacy Policy explains how we collect, use, and protect information when you use the Goli mobile application ("App"). By using the App, you agree to the practices described in this policy.</p>
-    </div>
-
-    <section>
-      <h2>1. Data Controller</h2>
-      <p>The data controller responsible for your personal data is the operator of the Goli application. For any privacy-related inquiries, you can contact us at:</p>
-      <p>Email: <a href="mailto:info@goli-app.com">info@goli-app.com</a></p>
-    </section>
-
-    <section>
-      <h2>2. Data We Collect</h2>
-      <p>We collect the following personal data when you use Goli:</p>
-      <ul>
-        <li>Email address — for account registration and login</li>
-        <li>Username and display name — shown to other users in groups</li>
-        <li>Country and city — optional, used for regional leaderboards</li>
-        <li>Profile photo — optional, uploaded by you</li>
-        <li>Match predictions (tips) — your score predictions for football matches</li>
-        <li>Push notification token — to send you relevant notifications</li>
-        <li>Group names entered by you — checked for inappropriate content</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>3. How We Use Your Data</h2>
-      <p>We use your data for the following purposes:</p>
-      <ul>
-        <li>To provide and operate the App (authentication, groups, tips, leaderboards)</li>
-        <li>To send push notifications about match results and points</li>
-        <li>To display you in regional leaderboards (only if you opt in)</li>
-        <li>To moderate content and prevent misuse (group names, usernames)</li>
-        <li>To improve the App and fix technical issues</li>
-      </ul>
-      <p style="margin-top: 10px;">Legal basis (Kosovo Law No. 06/L-082 / GDPR Art. 6): Contract performance (Art. 6(1)(b)) and legitimate interest (Art. 6(1)(f)).</p>
-    </section>
-
-    <section>
-      <h2>4. Third-Party Services</h2>
-      <p>We use the following third-party services that may process your data:</p>
-      <div class="third-party">
-        <div class="third-party-item">
-          <strong>Supabase (supabase.com)</strong>
-          Our backend infrastructure — stores your account data, tips, and group information. Data is stored on servers in the EU (Frankfurt, Germany). Privacy policy: <a href="https://supabase.com/privacy" target="_blank">supabase.com/privacy</a>
-        </div>
-        <div class="third-party-item">
-          <strong>Expo / Expo Push Notifications</strong>
-          Used to deliver push notifications to your device. Your device push token is stored on our servers and shared with Expo. Privacy policy: <a href="https://expo.dev/privacy" target="_blank">expo.dev/privacy</a>
-        </div>
-        <div class="third-party-item">
-          <strong>OpenAI (openai.com)</strong>
-          Used to moderate text content (group names, usernames) for inappropriate content. Only the text you submit is sent — no account data. Privacy policy: <a href="https://openai.com/privacy" target="_blank">openai.com/privacy</a>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <h2>5. Data Sharing</h2>
-      <p>We do not sell your personal data to third parties. Your data is shared only with the service providers listed above, solely to operate the App. Within the App, your username, display name, and tip predictions are visible to other members of your groups (after a match has started).</p>
-    </section>
-
-    <section>
-      <h2>6. Data Retention</h2>
-      <p>We retain your data for as long as your account is active. If you delete your account, all personal data and predictions associated with your account are permanently deleted within 30 days. Push notification tokens are removed immediately upon account deletion.</p>
-    </section>
-
-    <section>
-      <h2>7. Your Rights</h2>
-      <p>Under Kosovo Law No. 06/L-082 and applicable data protection law, you have the following rights:</p>
-      <ul>
-        <li>Right of access — request a copy of your personal data</li>
-        <li>Right to rectification — correct inaccurate data</li>
-        <li>Right to erasure — request deletion of your account and data</li>
-        <li>Right to restriction — limit how we process your data</li>
-        <li>Right to object — object to processing based on legitimate interest</li>
-        <li>Right to data portability — receive your data in a structured format</li>
-      </ul>
-      <p style="margin-top: 10px;">To exercise any of these rights, contact us at <a href="mailto:info@goli-app.com">info@goli-app.com</a>. You may also contact the Information and Privacy Agency of Kosovo (IKD — Agjensia e Informimit dhe Privatësisë) if you believe your rights have been violated.</p>
-    </section>
-
-    <section>
-      <h2>8. Children's Privacy</h2>
-      <p>Goli is not directed at children under the age of 13. We do not knowingly collect personal data from children under 13. If you believe a child has provided us with personal data, please contact us and we will delete it immediately.</p>
-    </section>
-
-    <section>
-      <h2>9. Security</h2>
-      <p>We implement appropriate technical measures to protect your personal data, including encrypted connections (HTTPS/TLS), row-level security in our database, and secure authentication via Supabase Auth. However, no system is 100% secure and we cannot guarantee absolute security.</p>
-    </section>
-
-    <section>
-      <h2>10. Changes to This Policy</h2>
-      <p>We may update this Privacy Policy from time to time. We will notify you of significant changes via a notification in the App. Continued use of the App after changes are posted constitutes acceptance of the updated policy.</p>
-    </section>
-
-    <section>
-      <h2>11. Contact</h2>
-      <p>For any questions about this Privacy Policy or how we handle your data:</p>
-      <p>Email: <a href="mailto:info@goli-app.com">info@goli-app.com</a><br />App: Goli — Football Predictions</p>
-    </section>
-
-    <div class="footer">
-      Goli App — Privacy Policy<br />
-      Governed by Kosovo Law No. 06/L-082 on Protection of Personal Data
-    </div>
-
+<header class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand"><img src="assets/icon.png" alt="Goli" /> Goli</a>
+    <a href="index.html" class="back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      Kthehu
+    </a>
   </div>
+</header>
+
+<div class="wrap">
+  <div class="doc-head">
+    <span class="eyebrow">Privatësia</span>
+    <h1>Privacy Policy</h1>
+    <div class="meta">Last updated · January 2025</div>
+  </div>
+
+  <div class="doc">
+    <p>Goli ("we", "our", or "us") is committed to protecting your personal data. This Privacy Policy explains how we collect, use, and protect information when you use the Goli mobile application ("App"). By using the App, you agree to the practices described in this policy.</p>
+
+    <h2><span class="n">01</span> Data Controller</h2>
+    <p>The data controller responsible for your personal data is the operator of the Goli application.</p>
+    <p>For any privacy-related inquiries, contact us at: <a href="mailto:info@goli-app.com">info@goli-app.com</a></p>
+
+    <h2><span class="n">02</span> Data We Collect</h2>
+    <p>We collect the following personal data when you use Goli:</p>
+    <ul>
+      <li>Email address — for account registration and login</li>
+      <li>Username and display name — shown to other users in groups</li>
+      <li>Country and city — optional, used for regional leaderboards</li>
+      <li>Profile photo — optional, uploaded by you</li>
+      <li>Match predictions (tips) — your score predictions for football matches</li>
+      <li>Push notification token — to send you relevant notifications</li>
+      <li>Group names entered by you — checked for inappropriate content</li>
+    </ul>
+
+    <h2><span class="n">03</span> How We Use Your Data</h2>
+    <p>We use your data for the following purposes:</p>
+    <ul>
+      <li>To provide and operate the App (authentication, groups, tips, leaderboards)</li>
+      <li>To send push notifications about match results and points</li>
+      <li>To display you in regional leaderboards (only if you opt in)</li>
+      <li>To moderate content and prevent misuse (group names, usernames)</li>
+      <li>To improve the App and fix technical issues</li>
+    </ul>
+    <div class="legal-note"><strong>Legal basis</strong> (Kosovo Law No. 06/L-082 / GDPR Art. 6): Contract performance (Art. 6(1)(b)) and legitimate interest (Art. 6(1)(f)).</div>
+
+    <h2><span class="n">04</span> Third-Party Services</h2>
+    <p>We use the following third-party services that may process your data:</p>
+    <div class="providers">
+      <div class="provider">
+        <div class="pname"><span class="dot"></span> Supabase (supabase.com)</div>
+        <p>Our backend infrastructure — stores your account data, tips, and group information. Data is stored on servers in the EU (Frankfurt, Germany). <a href="https://supabase.com/privacy">Privacy policy →</a></p>
+      </div>
+      <div class="provider">
+        <div class="pname"><span class="dot"></span> Expo / Expo Push Notifications</div>
+        <p>Used to deliver push notifications to your device. Your device push token is stored on our servers and shared with Expo. <a href="https://expo.dev/privacy">Privacy policy →</a></p>
+      </div>
+      <div class="provider">
+        <div class="pname"><span class="dot"></span> OpenAI (openai.com)</div>
+        <p>Used to moderate text content (group names, usernames) for inappropriate content. Only the text you submit is sent — no account data. <a href="https://openai.com/privacy">Privacy policy →</a></p>
+      </div>
+    </div>
+
+    <h2><span class="n">05</span> Data Sharing</h2>
+    <p>We do not sell your personal data to third parties. Your data is shared only with the service providers listed above, solely to operate the App. Within the App, your username, display name, and tip predictions are visible to other members of your groups (after a match has started).</p>
+
+    <h2><span class="n">06</span> Data Retention</h2>
+    <p>We retain your data for as long as your account is active. If you delete your account, all personal data and predictions associated with your account are permanently deleted within 30 days. Push notification tokens are removed immediately upon account deletion.</p>
+
+    <h2><span class="n">07</span> Your Rights</h2>
+    <p>Under Kosovo Law No. 06/L-082 and applicable data protection law, you have the following rights:</p>
+    <ul>
+      <li><strong>Right of access</strong> — request a copy of your personal data</li>
+      <li><strong>Right to rectification</strong> — correct inaccurate data</li>
+      <li><strong>Right to erasure</strong> — request deletion of your account and data</li>
+      <li><strong>Right to restriction</strong> — limit how we process your data</li>
+      <li><strong>Right to object</strong> — object to processing based on legitimate interest</li>
+      <li><strong>Right to data portability</strong> — receive your data in a structured format</li>
+    </ul>
+    <p>To exercise any of these rights, contact us at <a href="mailto:info@goli-app.com">info@goli-app.com</a>. You may also contact the Information and Privacy Agency of Kosovo (IKD — Agjensia e Informimit dhe Privatësisë) if you believe your rights have been violated.</p>
+
+    <h2><span class="n">08</span> Children's Privacy</h2>
+    <p>Goli is not directed at children under the age of 13. We do not knowingly collect personal data from children under 13. If you believe a child has provided us with personal data, please contact us and we will delete it immediately.</p>
+
+    <h2><span class="n">09</span> Security</h2>
+    <p>We implement appropriate technical measures to protect your personal data, including encrypted connections (HTTPS/TLS), row-level security in our database, and secure authentication via Supabase Auth. However, no system is 100% secure and we cannot guarantee absolute security.</p>
+
+    <h2><span class="n">10</span> Changes to This Policy</h2>
+    <p>We may update this Privacy Policy from time to time. We will notify you of significant changes via a notification in the App. Continued use of the App after changes are posted constitutes acceptance of the updated policy.</p>
+
+    <h2><span class="n">11</span> Contact</h2>
+    <p>For any questions about this Privacy Policy or how we handle your data:</p>
+    <p>Email: <a href="mailto:info@goli-app.com">info@goli-app.com</a><br />
+    Website: <a href="https://goli-app.com">goli-app.com</a></p>
+  </div>
+</div>
+
+<footer>
+  <div class="foot-inner">
+    <div class="foot-brand"><img src="assets/icon.png" alt="Goli" /> Goli</div>
+    <div class="foot-note">
+      Goli App — Privacy Policy
+      <span class="tag">Governed by Kosovo Law No. 06/L-082 on Protection of Personal Data</span>
+    </div>
+  </div>
+</footer>
+
 </body>
 </html>
