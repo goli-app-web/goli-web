@@ -47,7 +47,7 @@
 }
 
 *{ box-sizing:border-box; margin:0; padding:0; }
-html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+html{ -webkit-text-size-adjust:100%; }
 body{
   background:var(--bg);
   color:var(--text);
@@ -634,6 +634,17 @@ footer{ border-top:1px solid var(--line); padding:42px 0 30px; background:var(--
 </footer>
 
 <script>
+/* ---------- smooth scroll without URL hash ---------- */
+document.addEventListener('click', function(e){
+  const a = e.target.closest('a[href^="#"]');
+  if(!a) return;
+  const id = a.getAttribute('href').slice(1);
+  const target = id ? document.getElementById(id) : document.documentElement;
+  if(!target) return;
+  e.preventDefault();
+  target.scrollIntoView({behavior:'smooth'});
+});
+
 /* ---------- hero reveal ---------- */
 (function(){
   const hero = document.getElementById('top');
