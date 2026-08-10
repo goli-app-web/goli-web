@@ -34,29 +34,84 @@
     transition:transform .2s, opacity .2s;
   }
   .btn:hover{ transform:translateY(-2px); opacity:.92; }
-  .hint{ margin-top:22px; margin-bottom:0; font-size:.8rem; color:var(--text-2); }
-  .hint.prominent{
-    margin-top:26px; padding:14px 16px; border-radius:12px;
-    background:#121413; border:1px solid var(--line); color:var(--text);
-    font-size:.88rem; font-weight:600;
+  .btn.hidden{ display:none; }
+  .steps{
+    display:none; text-align:left; margin-top:4px; margin-bottom:0;
+    background:#121413; border:1px solid var(--line); border-radius:14px; padding:18px 20px;
   }
-  .hint b{ color:var(--accent); }
+  .steps.show{ display:block; }
+  .steps ol{ margin:0; padding-left:20px; color:var(--text); font-size:.92rem; line-height:1.7; }
+  .steps b{ color:var(--accent); }
+  .hint{ margin-top:22px; margin-bottom:0; font-size:.8rem; color:var(--text-2); }
+  .hint.hidden{ display:none; }
 </style>
 </head>
 <body>
 <div class="card">
   <img src="assets/icon.png" alt="Goli" />
   <h1>Shkarko Goli</h1>
-  <p>Shtyp butonin për të hapur faqen e aplikacionit në App Store.</p>
-  <a class="btn" id="open" href="itms-apps://apps.apple.com/app/id6768261165">Hap në App Store</a>
-  <p class="hint" id="hint">Nëse butoni nuk hapet, prek <b>⋯</b> lart djathtas dhe zgjidh "Hap në shfletues" (Open in Browser).</p>
+  <p id="lead">Shtyp butonin për të hapur faqen e aplikacionit në App Store.</p>
+
+  <a class="btn" id="open" href="https://apps.apple.com/app/id6768261165">Hap në App Store</a>
+
+  <div class="steps" id="steps">
+    <ol>
+      <li>Prek <b>⋯</b> lart djathtas</li>
+      <li>Zgjidh <b>"Hap në shfletues"</b> (Open in Browser)</li>
+      <li>Faqja hapet në Safari — provo butonin sërish aty</li>
+    </ol>
+  </div>
+
+  <p class="hint" id="hint">Nëse butoni nuk hapet, prek <b>⋯</b> lart djathtas dhe zgjidh "Hap në shfletues".</p>
 </div>
 <script>
   var ua = navigator.userAgent || '';
-  var isInAppBrowser = /Instagram|FBAN|FBAV|FB_IAB|Line\//i.test(ua);
-  if (isInAppBrowser) {
-    document.getElementById('hint').className = 'hint prominent';
+  var isInstagram = /Instagram/i.test(ua);
+  var isOtherInAppBrowser = /FBAN|FBAV|FB_IAB|Line\/|TikTok|BytedanceWebview|Threads/i.test(ua);
+
+  var openBtn = document.getElementById('open');
+  var hint = document.getElementById('hint');
+  var steps = document.getElementById('steps');
+  var lead = document.getElementById('lead');
+
+  function showSteps() {
+    steps.className = 'steps show';
+    hint.className = 'hint hidden';
+    openBtn.className = 'btn hidden';
+    lead.textContent = 'Faqja e App Store nuk hapet drejtpërdrejt këtu:';
   }
+
+  if (isInstagram) {
+    // Known dead end inside Instagram — no scheme trick survives, skip straight to it.
+    showSteps();
+  } else if (isOtherInAppBrowser) {
+    openBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      var left = false;
+      var markLeft = function () { left = true; };
+      window.addEventListener('pagehide', markLeft, { once: true });
+      document.addEventListener('visibilitychange', function () {
+        if (document.hidden) left = true;
+      });
+
+      window.location.href = 'itms-apps://apps.apple.com/app/id6768261165';
+
+      setTimeout(function () {
+        if (left) return;
+        window.location.href = 'x-safari-https://apps.apple.com/app/id6768261165';
+
+        setTimeout(function () {
+          if (left) return;
+          window.open('https://apps.apple.com/app/id6768261165', '_blank');
+
+          setTimeout(function () {
+            if (!left) showSteps();
+          }, 900);
+        }, 700);
+      }, 700);
+    });
+  }
+  // Regular Safari/Chrome: the plain https link on the button just works.
 </script>
 </body>
 </html>
