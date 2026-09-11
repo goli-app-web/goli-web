@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; script-src 'none';" />
+<title>Delete Account — Goli</title>
+<meta name="description" content="How to delete your Goli account and personal data." />
+
+<link rel="icon" type="image/png" href="assets/icon.png" />
+<link rel="apple-touch-icon" href="assets/icon.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+
+<style>
+:root{
+  --bg:#000000;
+  --bg-2:#070807;
+  --surface:#0e100f;
+  --line:rgba(255,255,255,.08);
+  --line-2:rgba(255,255,255,.14);
+  --text:#f4f6f5;
+  --text-2:#9aa39f;
+  --text-3:#616865;
+  --accent:#10b981;
+  --accent-2:#34d399;
+  --accent-dim:rgba(16,185,129,.14);
+  --font:'Hanken Grotesk', -apple-system, system-ui, sans-serif;
+  --mono:'JetBrains Mono', ui-monospace, monospace;
+  --maxw:760px;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+
+*{ box-sizing:border-box; margin:0; padding:0; }
+html{ -webkit-text-size-adjust:100%; }
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--font);
+  line-height:1.65;
+  font-weight:400;
+  -webkit-font-smoothing:antialiased;
+  letter-spacing:-.005em;
+}
+a{ color:var(--accent); text-decoration:none; transition:color .2s; }
+a:hover{ color:var(--accent-2); }
+::selection{ background:var(--accent); color:#04140d; }
+.wrap{ width:100%; max-width:var(--maxw); margin:0 auto; padding:0 28px; }
+
+header.nav{
+  position:sticky; top:0; z-index:80;
+  background:rgba(5,6,5,.72); backdrop-filter:blur(18px) saturate(1.2);
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{ display:flex; align-items:center; justify-content:space-between; height:70px; max-width:var(--maxw); margin:0 auto; padding:0 28px; }
+.brand{ display:flex; align-items:center; gap:11px; font-weight:700; font-size:1.18rem; letter-spacing:-.04em; color:var(--text); }
+.brand img{ width:34px; height:34px; border-radius:9px; box-shadow:0 0 0 1px var(--line-2), 0 6px 18px -8px rgba(0,0,0,.8); }
+.back{
+  display:inline-flex; align-items:center; gap:8px;
+  color:var(--text-2); font-weight:500; font-size:.92rem;
+  border:1px solid var(--line-2); border-radius:11px; padding:9px 16px;
+  transition:border-color .2s, color .2s, transform .2s var(--ease);
+}
+.back:hover{ color:var(--text); border-color:var(--text-2); transform:translateY(-1px); }
+.back svg{ width:15px; height:15px; }
+
+.doc-head{ padding:72px 0 40px; border-bottom:1px solid var(--line); }
+.eyebrow{
+  font-family:var(--mono); font-weight:500; font-size:.72rem;
+  letter-spacing:.26em; text-transform:uppercase; color:var(--accent);
+}
+.doc-head h1{ font-size:clamp(2.2rem,5vw,3.2rem); font-weight:700; line-height:1.05; letter-spacing:-.035em; margin-top:18px; }
+.doc-head .meta{ font-family:var(--mono); font-size:.78rem; letter-spacing:.04em; color:var(--text-3); margin-top:20px; }
+
+.doc{ padding:8px 0 96px; }
+.doc h2{
+  font-size:1.32rem; font-weight:700; letter-spacing:-.03em; color:var(--text);
+  margin-top:56px; padding-top:28px; border-top:1px solid var(--line);
+  display:flex; align-items:baseline; gap:14px;
+}
+.doc h2 .n{ font-family:var(--mono); font-size:.86rem; font-weight:500; color:var(--accent); letter-spacing:.04em; }
+.doc p{ color:var(--text-2); margin-top:14px; font-size:1.02rem; }
+.doc ol{ margin-top:16px; padding-left:0; list-style:none; counter-reset:step; display:flex; flex-direction:column; gap:14px; }
+.doc ol li{ position:relative; padding-left:40px; color:var(--text-2); font-size:1.02rem; counter-increment:step; }
+.doc ol li::before{
+  content:counter(step); position:absolute; left:0; top:-1px;
+  width:26px; height:26px; border-radius:50%;
+  background:var(--accent-dim); border:1px solid rgba(16,185,129,.28);
+  color:var(--accent-2); font-family:var(--mono); font-size:.8rem; font-weight:700;
+  display:flex; align-items:center; justify-content:center;
+}
+.doc ul{ list-style:none; margin-top:16px; display:flex; flex-direction:column; gap:11px; }
+.doc ul li{ position:relative; padding-left:24px; color:var(--text-2); font-size:1.02rem; }
+.doc ul li::before{ content:""; position:absolute; left:2px; top:.62em; width:6px; height:6px; border-radius:50%; background:var(--accent); box-shadow:0 0 8px var(--accent-dim); }
+.doc strong{ color:var(--text); font-weight:600; }
+
+.legal-note{
+  margin-top:18px; padding:16px 20px; border-radius:14px;
+  background:var(--accent-dim); border:1px solid rgba(16,185,129,.28);
+  font-size:.96rem; color:var(--text-2);
+}
+.legal-note strong{ color:var(--accent-2); }
+
+footer{ border-top:1px solid var(--line); padding:40px 0; background:var(--bg-2); }
+.foot-inner{ max-width:var(--maxw); margin:0 auto; padding:0 28px; }
+.foot-brand{ display:flex; align-items:center; gap:11px; font-weight:700; font-size:1.1rem; letter-spacing:-.04em; }
+.foot-brand img{ width:32px; height:32px; border-radius:9px; box-shadow:0 0 0 1px var(--line-2); }
+.foot-note{ margin-top:16px; color:var(--text-3); font-size:.86rem; }
+.foot-note .tag{ font-family:var(--mono); font-size:.68rem; letter-spacing:.16em; text-transform:uppercase; color:var(--text-3); display:block; margin-top:8px; }
+
+@media (max-width:560px){
+  .doc-head{ padding:52px 0 32px; }
+  .doc h2{ margin-top:44px; }
+}
+@media (prefers-reduced-motion:reduce){
+  .back{ transition:none; }
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand"><img src="assets/icon.png" alt="Goli" /> Goli</a>
+    <a href="index.html" class="back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      Kthehu
+    </a>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="doc-head">
+    <span class="eyebrow">Account</span>
+    <h1>Delete Account</h1>
+    <div class="meta">Last updated · September 2026</div>
+  </div>
+
+  <div class="doc">
+    <p>You can permanently delete your Goli account and all associated data directly from within the app. No web login is required — account deletion is a self-service feature built into the app.</p>
+
+    <h2><span class="n">01</span> Steps to delete your account</h2>
+    <ol>
+      <li>Open the Goli app and make sure you're logged in</li>
+      <li>Go to the <strong>Settings</strong> tab</li>
+      <li>Tap your profile card at the top to open <strong>Edit Profile</strong></li>
+      <li>Scroll to the bottom and tap <strong>Delete account</strong></li>
+      <li>Confirm by tapping <strong>Yes, delete account</strong></li>
+    </ol>
+
+    <h2><span class="n">02</span> What gets deleted</h2>
+    <p>Deleting your account permanently removes:</p>
+    <ul>
+      <li>Your profile — email, username, display name, profile photo</li>
+      <li>All your match predictions (tips) across every group</li>
+      <li>Your season predictions and points history</li>
+      <li>Your membership in any groups (group data owned by other members is not affected)</li>
+      <li>Your push notification token</li>
+    </ul>
+    <div class="legal-note"><strong>Retention</strong> — your data is permanently deleted within 30 days of account deletion. Push notification tokens are removed immediately.</div>
+
+    <h2><span class="n">03</span> Can't access the app?</h2>
+    <p>If you're unable to log in and need your account and data deleted, email us at <a href="mailto:info@goli-app.com">info@goli-app.com</a> from the email address associated with your account, and we'll process the deletion manually.</p>
+
+    <h2><span class="n">04</span> More information</h2>
+    <p>See our <a href="privacy.html">Privacy Policy</a> for full details on what data we collect and how it's handled.</p>
+  </div>
+</div>
+
+<footer>
+  <div class="foot-inner">
+    <div class="foot-brand"><img src="assets/icon.png" alt="Goli" /> Goli</div>
+    <div class="foot-note">
+      Goli App — Account Deletion
+      <span class="tag">Governed by Kosovo Law No. 06/L-082 on Protection of Personal Data</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
