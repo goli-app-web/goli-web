@@ -98,6 +98,16 @@ button:disabled{ opacity:.6; cursor:default; transform:none; }
 .msg.err{ color:var(--danger); }
 .privacy{ color:var(--text-3); font-size:.84rem; margin-top:18px; }
 
+.perk{
+  display:flex; align-items:center; gap:16px;
+  margin-bottom:16px; padding:20px;
+  background:linear-gradient(135deg, rgba(16,185,129,.22), rgba(16,185,129,.08));
+  border:1px solid rgba(16,185,129,.45); border-radius:18px;
+  box-shadow:0 12px 40px -18px rgba(16,185,129,.6);
+}
+.perk-icon{ font-size:2.2rem; line-height:1; flex-shrink:0; }
+.perk-title{ font-size:1.3rem; font-weight:800; letter-spacing:-.025em; color:var(--accent-2); }
+.perk-text{ color:var(--text); font-size:.98rem; margin-top:2px; line-height:1.45; }
 #done{ display:none; }
 #done h2{ font-size:1.4rem; letter-spacing:-.03em; }
 #done p{ color:var(--text-2); margin-top:10px; }
@@ -127,6 +137,14 @@ button:disabled{ opacity:.6; cursor:default; transform:none; }
     <span class="eyebrow">Android Beta</span>
     <h1>Bëhu testues i Goli për Android</h1>
     <p>Goli po vjen në Google Play. Para publikimit na duhen testues që e përdorin aplikacionin vërtet: parashikojnë ndeshjet dhe na tregojnë çfarë nuk funksionon.</p>
+  </div>
+
+  <div class="perk">
+    <div class="perk-icon">🎁</div>
+    <div>
+      <div class="perk-title">6 muaj Goli Pro falas</div>
+      <div class="perk-text">Testuesit aktivë fitojnë Goli Pro për 6 muaj pas publikimit në Google Play.</div>
+    </div>
   </div>
 
   <div class="card">
