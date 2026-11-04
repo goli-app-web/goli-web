@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; script-src 'none';" />
+<title>Terms of Use — Goli</title>
+<meta name="description" content="The terms that govern your use of the Goli app." />
+
+<link rel="icon" type="image/png" href="assets/icon.png" />
+<link rel="apple-touch-icon" href="assets/icon.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+
+<style>
+:root{
+  --bg:#000000;
+  --bg-2:#070807;
+  --surface:#0e100f;
+  --line:rgba(255,255,255,.08);
+  --line-2:rgba(255,255,255,.14);
+  --text:#f4f6f5;
+  --text-2:#9aa39f;
+  --text-3:#616865;
+  --accent:#10b981;
+  --accent-2:#34d399;
+  --accent-dim:rgba(16,185,129,.14);
+  --font:'Hanken Grotesk', -apple-system, system-ui, sans-serif;
+  --mono:'JetBrains Mono', ui-monospace, monospace;
+  --maxw:760px;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+
+*{ box-sizing:border-box; margin:0; padding:0; }
+html{ -webkit-text-size-adjust:100%; }
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--font);
+  line-height:1.65;
+  font-weight:400;
+  -webkit-font-smoothing:antialiased;
+  letter-spacing:-.005em;
+}
+a{ color:var(--accent); text-decoration:none; transition:color .2s; }
+a:hover{ color:var(--accent-2); }
+::selection{ background:var(--accent); color:#04140d; }
+.wrap{ width:100%; max-width:var(--maxw); margin:0 auto; padding:0 28px; }
+
+/* ---------- nav ---------- */
+header.nav{
+  position:sticky; top:0; z-index:80;
+  background:rgba(5,6,5,.72); backdrop-filter:blur(18px) saturate(1.2);
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{ display:flex; align-items:center; justify-content:space-between; height:70px; max-width:var(--maxw); margin:0 auto; padding:0 28px; }
+.brand{ display:flex; align-items:center; gap:11px; font-weight:700; font-size:1.18rem; letter-spacing:-.04em; color:var(--text); }
+.brand img{ width:34px; height:34px; border-radius:9px; box-shadow:0 0 0 1px var(--line-2), 0 6px 18px -8px rgba(0,0,0,.8); }
+.back{
+  display:inline-flex; align-items:center; gap:8px;
+  color:var(--text-2); font-weight:500; font-size:.92rem;
+  border:1px solid var(--line-2); border-radius:11px; padding:9px 16px;
+  transition:border-color .2s, color .2s, transform .2s var(--ease);
+}
+.back:hover{ color:var(--text); border-color:var(--text-2); transform:translateY(-1px); }
+.back svg{ width:15px; height:15px; }
+
+/* ---------- header block ---------- */
+.doc-head{ padding:72px 0 40px; border-bottom:1px solid var(--line); }
+.eyebrow{
+  font-family:var(--mono); font-weight:500; font-size:.72rem;
+  letter-spacing:.26em; text-transform:uppercase; color:var(--accent);
+}
+.doc-head h1{ font-size:clamp(2.2rem,5vw,3.2rem); font-weight:700; line-height:1.05; letter-spacing:-.035em; margin-top:18px; }
+.doc-head .meta{ font-family:var(--mono); font-size:.78rem; letter-spacing:.04em; color:var(--text-3); margin-top:20px; }
+
+/* ---------- body content ---------- */
+.doc{ padding:8px 0 96px; }
+.doc h2{
+  font-size:1.32rem; font-weight:700; letter-spacing:-.03em; color:var(--text);
+  margin-top:56px; padding-top:28px; border-top:1px solid var(--line);
+  display:flex; align-items:baseline; gap:14px;
+}
+.doc h2 .n{ font-family:var(--mono); font-size:.86rem; font-weight:500; color:var(--accent); letter-spacing:.04em; }
+.doc p{ color:var(--text-2); margin-top:14px; font-size:1.02rem; }
+.doc ul{ list-style:none; margin-top:16px; display:flex; flex-direction:column; gap:11px; }
+.doc ul li{ position:relative; padding-left:24px; color:var(--text-2); font-size:1.02rem; }
+.doc ul li::before{ content:""; position:absolute; left:2px; top:.62em; width:6px; height:6px; border-radius:50%; background:var(--accent); box-shadow:0 0 8px var(--accent-dim); }
+.doc strong{ color:var(--text); font-weight:600; }
+
+.legal-note{
+  margin-top:18px; padding:16px 20px; border-radius:14px;
+  background:var(--accent-dim); border:1px solid rgba(16,185,129,.28);
+  font-size:.96rem; color:var(--text-2);
+}
+.legal-note strong{ color:var(--accent-2); }
+
+/* ---------- provider cards ---------- */
+.providers{ display:flex; flex-direction:column; gap:14px; margin-top:20px; }
+.provider{
+  background:var(--surface); border:1px solid var(--line); border-radius:18px;
+  padding:22px 24px; transition:border-color .25s, transform .25s var(--ease), background .25s;
+}
+.provider:hover{ border-color:var(--line-2); background:#101312; transform:translateY(-2px); }
+.provider .pname{ display:flex; align-items:center; gap:10px; font-weight:700; font-size:1.06rem; letter-spacing:-.02em; color:var(--text); }
+.provider .pname .dot{ width:7px; height:7px; border-radius:50%; background:var(--accent); box-shadow:0 0 10px var(--accent); flex-shrink:0; }
+.provider p{ margin-top:8px; font-size:.97rem; }
+.provider a{ font-family:var(--mono); font-size:.82rem; letter-spacing:.02em; }
+
+/* ---------- footer ---------- */
+footer{ border-top:1px solid var(--line); padding:40px 0; background:var(--bg-2); }
+.foot-inner{ max-width:var(--maxw); margin:0 auto; padding:0 28px; }
+.foot-brand{ display:flex; align-items:center; gap:11px; font-weight:700; font-size:1.1rem; letter-spacing:-.04em; }
+.foot-brand img{ width:32px; height:32px; border-radius:9px; box-shadow:0 0 0 1px var(--line-2); }
+.foot-note{ margin-top:16px; color:var(--text-3); font-size:.86rem; }
+.foot-note .tag{ font-family:var(--mono); font-size:.68rem; letter-spacing:.16em; text-transform:uppercase; color:var(--text-3); display:block; margin-top:8px; }
+
+@media (max-width:560px){
+  .doc-head{ padding:52px 0 32px; }
+  .doc h2{ margin-top:44px; }
+}
+@media (prefers-reduced-motion:reduce){
+  .back{ transition:none; }
+  .provider{ transition:none; }
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand"><img src="assets/icon.png" alt="Goli" /> Goli</a>
+    <a href="index.html" class="back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      Kthehu
+    </a>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="doc-head">
+    <span class="eyebrow">Kushtet e përdorimit</span>
+    <h1>Terms of Use</h1>
+    <div class="meta">Last updated · November 2026</div>
+  </div>
+
+  <div class="doc">
+    <p>These Terms of Use ("Terms") govern your use of the Goli mobile application and the website goli-app.com (together, the "App"). By creating an account or using the App, you agree to these Terms. If you do not agree, please do not use the App.</p>
+
+    <h2><span class="n">01</span> Operator</h2>
+    <p>The App is operated by:</p>
+    <p><strong>Fidan Kqiku</strong><br />
+    Gjilan, Kosovo<br />
+    Email: <a href="mailto:info@goli-app.com">info@goli-app.com</a></p>
+
+    <h2><span class="n">02</span> What Goli Is</h2>
+    <p>Goli is a free-to-play football prediction game. You predict the results of football matches, earn points for correct predictions, and compare yourself with friends in private groups and on leaderboards.</p>
+    <div class="legal-note"><strong>No gambling.</strong> Goli is not a betting or gambling service. You never stake money on predictions, and there are no cash prizes. Points have no monetary value and cannot be exchanged, sold or paid out.</div>
+
+    <h2><span class="n">03</span> Your Account</h2>
+    <ul>
+      <li>You must be at least 13 years old to use the App. If you are under the age of majority in your country, you need permission from a parent or guardian.</li>
+      <li>You must provide accurate registration information and keep your password confidential. You are responsible for activity on your account.</li>
+      <li>One person, one account. Accounts may not be sold or transferred.</li>
+      <li>You can delete your account at any time in the App's settings or via <a href="delete-account.html">goli-app.com/delete-account</a>.</li>
+    </ul>
+
+    <h2><span class="n">04</span> Acceptable Use</h2>
+    <p>You agree not to:</p>
+    <ul>
+      <li>Use offensive, hateful, discriminatory or sexual usernames, display names, group names or profile photos</li>
+      <li>Impersonate other people, clubs or organisations</li>
+      <li>Manipulate results or leaderboards, for example through multiple accounts, automation or exploiting bugs</li>
+      <li>Attempt to access other users' data or interfere with the App's servers and security</li>
+      <li>Use the App for any commercial purpose, including organising paid betting pools, without our written consent</li>
+    </ul>
+    <p>Names and other text you enter are checked automatically for inappropriate content. We may reject or remove such content, and we may suspend or delete accounts that violate these Terms. Where reasonable, we will inform you and give you the opportunity to respond.</p>
+
+    <h2><span class="n">05</span> Groups</h2>
+    <p>Group admins can invite members, remove members and choose the scoring rules for their group. Within a group, your username, display name, profile photo, points and predictions are visible to other members (predictions only after the match has started).</p>
+
+    <h2><span class="n">06</span> Goli Pro</h2>
+    <ul>
+      <li>Goli Pro is an optional paid subscription that unlocks additional features, such as more groups, larger groups, additional leagues and season predictions. The current features and prices are shown in the App before you buy.</li>
+      <li>Subscriptions are sold and billed through the app store you use (for example the Apple App Store). The store's terms apply to payment, renewal, cancellation and refunds.</li>
+      <li>Subscriptions renew automatically at the end of each period unless you cancel at least 24 hours before the renewal date. You can manage or cancel your subscription in your app store account settings. Deleting the App or your Goli account does not cancel your subscription.</li>
+      <li>Refund requests must be made to the app store that processed your payment.</li>
+      <li>If Goli Pro is not available on your platform, the App can still be used with the free features.</li>
+    </ul>
+
+    <h2><span class="n">07</span> Promotions and Rewards</h2>
+    <p>From time to time we may offer promotions, for example free Goli Pro for beta testers or for top players of a competition. Such rewards consist only of in-app benefits, have no cash value, cannot be transferred, and are subject to the conditions announced with the promotion.</p>
+
+    <h2><span class="n">08</span> Match Data</h2>
+    <p>Fixtures, results and standings come from third-party data providers. We do our best to keep them accurate and up to date, but delays or errors can occur. Points are calculated based on the official final result as reported by our data provider. If a match is postponed, cancelled or abandoned, we may void predictions for that match. Obvious calculation errors may be corrected afterwards.</p>
+
+    <h2><span class="n">09</span> Intellectual Property</h2>
+    <p>The App, its design, code and the Goli name and logo belong to the operator. Club names, crests and competition names belong to their respective owners and are used only to identify matches. Goli is not affiliated with or endorsed by any club, league or federation.</p>
+    <p>You keep the rights to content you upload (such as your profile photo) and grant us a non-exclusive licence to store and display it within the App for as long as your account exists.</p>
+
+    <h2><span class="n">10</span> Availability and Changes</h2>
+    <p>We aim to keep the App available at all times but cannot guarantee uninterrupted service. We may change, add or remove features. We may discontinue the App; if so, we will inform users in advance where possible, and active paid subscriptions will be handled in accordance with the app store's refund rules.</p>
+
+    <h2><span class="n">11</span> Liability</h2>
+    <p>The free features of the App are provided "as is". We are liable without limitation for damage caused intentionally or through gross negligence, and for injury to life, body or health. For slight negligence, we are liable only for breach of essential obligations, and only up to the typical, foreseeable damage. Any further liability is excluded, to the extent permitted by law. Nothing in these Terms limits rights you have under mandatory consumer protection law.</p>
+
+    <h2><span class="n">12</span> Privacy</h2>
+    <p>How we process your personal data is described in our <a href="privacy.html">Privacy Policy</a>.</p>
+
+    <h2><span class="n">13</span> Changes to These Terms</h2>
+    <p>We may update these Terms, for example when we add features or when the law changes. We will notify you of material changes in the App at least 14 days before they take effect. If you do not agree with the changes, you can delete your account before they take effect.</p>
+
+    <h2><span class="n">14</span> Governing Law</h2>
+    <p>These Terms are governed by the laws of the Republic of Kosovo. If you are a consumer living in another country, you also keep the protection of the mandatory consumer protection laws of your country of residence. The European Commission's online dispute resolution platform is no longer available; we are not obliged and not willing to take part in dispute resolution proceedings before a consumer arbitration board.</p>
+
+    <h2><span class="n">15</span> Contact</h2>
+    <p>Questions about these Terms:</p>
+    <p>Email: <a href="mailto:info@goli-app.com">info@goli-app.com</a><br />
+    Website: <a href="https://goli-app.com">goli-app.com</a></p>
+  </div>
+</div>
+
+<footer>
+  <div class="foot-inner">
+    <div class="foot-brand"><img src="assets/icon.png" alt="Goli" /> Goli</div>
+    <div class="foot-note">
+      Goli App — Terms of Use
+      <span class="tag">Operated by Fidan Kqiku · Gjilan, Kosovo</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
